@@ -24,18 +24,15 @@ export class Schedule extends React.Component {
 
     return (
       <div>
-        <div>
-          Who's schedule is this?
-          {"  "}
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type={"text"}
-              onChange={this.handleChange}
-              value={this.state.team}
-            />
-            <input type="submit" value="Create Schedule" />
-          </form>
-        </div>
+        <h1>Who's schedule is this?</h1>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type={"text"}
+            onChange={this.handleChange}
+            value={this.state.team}
+          />
+          <input type="submit" value="Create Schedule" />
+        </form>
         {this.state.displayed ? title : null}
         <div>
           {" "}

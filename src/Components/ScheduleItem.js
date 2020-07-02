@@ -10,6 +10,8 @@ export class ScheduleItem extends React.Component {
       time: "",
       teamScore: "",
       opponentScore: "",
+      details: false,
+      score: false,
     };
   }
 
@@ -20,11 +22,22 @@ export class ScheduleItem extends React.Component {
         ? event.target.checked
         : event.target.value,
     });
+    console.log(this.state);
+  };
+
+  handleSubmitInputs = (event) => {
+    event.preventDefault();
+    this.setState({ details: true });
+  };
+
+  handleScoreInputs = (event) => {
+    event.preventDefault();
+    this.setState({ score: true });
   };
 
   render() {
-    return (
-      <div>
+    const inputs = (
+      <form onSubmit={this.handleSubmitInputs}>
         <h2>
           {" "}
           Enter the Opponent:{" "}
@@ -62,6 +75,51 @@ export class ScheduleItem extends React.Component {
             onChange={this.handleChange}
           />
         </h2>
+        <input type="submit" value="Create Game" />
+      </form>
+    );
+
+    const needScore = (
+      <h2>
+        {this.props.team} {this.state.home ? "vs" : "@"} {this.state.opponent}{" "}
+        {this.state.date} {this.state.time}
+        <form onSubmit={this.handleScoreInputs}>
+          {this.props.team}:{" "}
+          <input
+            type={"text"}
+            name={"teamScore"}
+            value={this.state.teamScore}
+            onChange={this.handleChange}
+          />{" "}
+          {this.state.opponent}:{" "}
+          <input
+            type={"text"}
+            name={"opponentScore"}
+            value={this.state.opponentScore}
+            onChange={this.handleChange}
+          />
+          <input type="submit" value="Submit Score" />
+        </form>
+      </h2>
+    );
+
+    const finishedGame = (
+      <h2>
+        {this.props.team} {this.state.home ? "vs" : "@"} {this.state.opponent}{" "}
+        <div>
+          {this.props.team}: {this.state.teamScore} {this.state.opponent}:{" "}
+          {this.state.opponentScore}
+        </div>
+      </h2>
+    );
+
+    return (
+      <div>
+        {this.state.score
+          ? finishedGame
+          : this.state.details
+          ? needScore
+          : inputs}
       </div>
     );
   }
