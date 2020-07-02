@@ -43,7 +43,6 @@ export class Schedule extends React.Component {
         {this.state.displayed ? null : input}
         {this.state.displayed ? title : null}
         <div>
-          {" "}
           {this.state.displayed ? (
             <ScheduleItem team={this.state.team} />
           ) : null}
