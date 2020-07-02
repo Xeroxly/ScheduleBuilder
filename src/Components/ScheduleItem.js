@@ -22,22 +22,16 @@ export class ScheduleItem extends React.Component {
         ? event.target.checked
         : event.target.value,
     });
-    console.log(this.state);
   };
 
-  handleSubmitInputs = (event) => {
+  handleInputs = (event) => {
     event.preventDefault();
-    this.setState({ details: true });
-  };
-
-  handleScoreInputs = (event) => {
-    event.preventDefault();
-    this.setState({ score: true });
+    this.setState({ [event.target.name]: true });
   };
 
   render() {
     const inputs = (
-      <form onSubmit={this.handleSubmitInputs}>
+      <form onSubmit={this.handleInputs} name={"details"}>
         <h2>
           {" "}
           Enter the Opponent:{" "}
@@ -83,7 +77,7 @@ export class ScheduleItem extends React.Component {
       <h2>
         {this.props.team} {this.state.home ? "vs" : "@"} {this.state.opponent}{" "}
         {this.state.date} {this.state.time}
-        <form onSubmit={this.handleScoreInputs}>
+        <form onSubmit={this.handleInputs} name={"score"}>
           {this.props.team}:{" "}
           <input
             type={"text"}
@@ -105,10 +99,10 @@ export class ScheduleItem extends React.Component {
 
     const finishedGame = (
       <h2>
-        {this.props.team} {this.state.home ? "vs" : "@"} {this.state.opponent}{" "}
+        {this.props.team} {this.state.home ? "vs" : "@"} {this.state.opponent}
         <div>
-          {this.props.team}: {this.state.teamScore} {this.state.opponent}:{" "}
-          {this.state.opponentScore}
+          {this.props.team}: {this.state.teamScore} {"  "}
+          {this.state.opponent}: {this.state.opponentScore}
         </div>
       </h2>
     );
