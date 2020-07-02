@@ -30,7 +30,7 @@ export class ScheduleItem extends React.Component {
   };
 
   render() {
-    const inputs = (
+    const detailsInput = (
       <form onSubmit={this.handleInputs} name={"details"}>
         <h2>
           {" "}
@@ -105,9 +105,9 @@ export class ScheduleItem extends React.Component {
           {this.state.opponent}: {this.state.opponentScore}{" "}
           {parseInt(this.state.teamScore) >
           parseInt(this.state.opponentScore) ? (
-            <span class="win">W</span>
+            <span className="win">W</span>
           ) : (
-            <span class="lose">L</span>
+            <span className="lose">L</span>
           )}
         </div>
       </h2>
@@ -119,7 +119,7 @@ export class ScheduleItem extends React.Component {
           ? finishedGame
           : this.state.details
           ? needScore
-          : inputs}
+          : detailsInput}
       </div>
     );
   }

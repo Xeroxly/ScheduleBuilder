@@ -7,6 +7,7 @@ export class Schedule extends React.Component {
     this.state = {
       team: "",
       displayed: false,
+      games: [],
     };
   }
 
@@ -19,7 +20,9 @@ export class Schedule extends React.Component {
     event.preventDefault();
   };
 
-  handleNewGame = (event) => {};
+  handleNewGame = (event) => {
+    console.log("new game");
+  };
 
   render() {
     const title = <h1> Schedule for {this.state.team}: </h1>;
