@@ -19,10 +19,12 @@ export class Schedule extends React.Component {
     event.preventDefault();
   };
 
+  handleNewGame = (event) => {};
+
   render() {
     const title = <h1> Schedule for {this.state.team}: </h1>;
 
-    return (
+    const input = (
       <div>
         <h1>Who's schedule is this?</h1>
         <form onSubmit={this.handleSubmit}>
@@ -33,11 +35,26 @@ export class Schedule extends React.Component {
           />
           <input type="submit" value="Create Schedule" />
         </form>
+      </div>
+    );
+
+    return (
+      <div>
+        {this.state.displayed ? null : input}
         {this.state.displayed ? title : null}
         <div>
           {" "}
           {this.state.displayed ? (
             <ScheduleItem team={this.state.team} />
+          ) : null}
+        </div>
+        <div>
+          {this.state.displayed ? (
+            <input
+              type="button"
+              value="Add new game"
+              onClick={this.handleNewGame}
+            />
           ) : null}
         </div>
       </div>
