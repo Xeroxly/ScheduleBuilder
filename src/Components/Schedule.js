@@ -29,7 +29,7 @@ export class Schedule extends React.Component {
   };
 
   render() {
-    const title = <h1> Schedule for {this.state.team}: </h1>;
+    const title = <h1> Schedule for {this.state.team}:</h1>;
 
     const input = (
       <div>
