@@ -7,7 +7,7 @@ export class Schedule extends React.Component {
     this.state = {
       team: "",
       displayed: false,
-      games: [],
+      gameList: [],
     };
   }
 
@@ -21,7 +21,11 @@ export class Schedule extends React.Component {
   };
 
   handleNewGame = (event) => {
-    console.log("new game");
+    this.setState({
+      gameList: this.state.gameList.concat(
+        <ScheduleItem team={this.state.team} />
+      ),
+    });
   };
 
   render() {
@@ -46,9 +50,9 @@ export class Schedule extends React.Component {
         {this.state.displayed ? null : input}
         {this.state.displayed ? title : null}
         <div>
-          {this.state.displayed ? (
-            <ScheduleItem team={this.state.team} />
-          ) : null}
+          {this.state.displayed
+            ? this.state.gameList.map((game) => <div>{game}</div>)
+            : null}
         </div>
         <div>
           {this.state.displayed ? (
