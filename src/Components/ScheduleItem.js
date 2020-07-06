@@ -103,8 +103,11 @@ export class ScheduleItem extends React.Component {
         <div>
           {this.props.team}: {this.state.teamScore} {"  "}
           {this.state.opponent}: {this.state.opponentScore}{" "}
-          {parseInt(this.state.teamScore) >
+          {parseInt(this.state.teamScore) ===
           parseInt(this.state.opponentScore) ? (
+            <span className="tie">T</span>
+          ) : parseInt(this.state.teamScore) >
+            parseInt(this.state.opponentScore) ? (
             <span className="win">W</span>
           ) : (
             <span className="lose">L</span>
